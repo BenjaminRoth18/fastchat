@@ -1,0 +1,14 @@
+@import '../../../styles/_colors.scss';
+
+:host {
+  display: block;
+  margin: 0 auto;
+  max-width: 800px;
+  padding: 0 5%;
+}
+
+p.chat-date {
+  color: $col_grey-1;
+  margin-bottom: 30px;
+  text-align: center;
+}

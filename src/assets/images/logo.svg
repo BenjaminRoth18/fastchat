@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="14px" viewBox="0 0 16 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+    <title>Icon: Dynamic</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Logo" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(-92.000000, -88.000000)">
+        <g id="Header:-App" transform="translate(0.000000, 70.000000)" fill="#000000">
+            <g id="Logo" transform="translate(11.000000, 14.000000)">
+                <g id="Icon:-Dynamic" transform="translate(81.000000, 4.000000)">
+                    <rect id="Rectangle-4" x="2" y="0" width="13" height="2" rx="1"></rect>
+                    <rect id="Rectangle-4" x="0" y="4" width="9" height="2" rx="1"></rect>
+                    <rect id="Rectangle-4" x="4" y="8" width="7" height="2" rx="1"></rect>
+                    <rect id="Rectangle-4" x="1" y="12" width="15" height="2" rx="1"></rect>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

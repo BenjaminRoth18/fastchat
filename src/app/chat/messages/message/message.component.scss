@@ -1,0 +1,62 @@
+@import '../../../../styles/colors';
+
+.chat-messages {
+  .chat-message {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+
+    &.chat-other {
+      justify-content: flex-start;
+
+      .user-avatar {
+        display: block;
+        margin-right: 15px;
+
+        img {
+          border-radius: 100%;
+          width: 40px;
+        }
+      }
+
+      .chat-content {
+        background: transparent;
+        box-shadow: 0 0 2px 0 rgba(0,0,0,0.25);
+      }
+    }
+
+    .user-avatar {
+      display: none;
+    }
+
+    .chat-content {
+      background: $col_purple-1;
+      border-radius: 8px;
+      padding: 12px 15px 15px 15px;
+
+      h5 {
+        font-size: 16px;
+        font-weight: 500;
+        margin: 0 0 5px 0;
+      }
+
+      p {
+        margin: 0;
+      }
+    }
+
+    .chat-message-inner {
+      display: flex;
+    }
+  }
+
+  .chat-joined {
+    margin: 15px 0 20px 0;
+    text-align: center;
+    width: 100%;
+
+    p {
+      margin: 0;
+    }
+  }
+}

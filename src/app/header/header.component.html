@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <a href="#" class="link-logo">
+    <span class="logo">Fastchat <img src="../../assets/images/logo.svg" alt=""></span>
+  </a>
+  <div class="app-toolbar">
+    <div *ngIf="userOnline" class="user-online">
+      <span>{{ userOnline }}</span> User online
+    </div>
+    <div class="user-current" *ngIf="user">
+      <img [src]="user?.avatar" alt="{{ user?.name }}">
+    </div>
+  </div>
+</mat-toolbar>
