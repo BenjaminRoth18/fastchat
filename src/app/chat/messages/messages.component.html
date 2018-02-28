@@ -1,9 +1,10 @@
 <div class="messages-list" #messageList>
   <div class="messages-list-inner">
-    <p class="chat-date">
-      {{ joinDate | date:'EEEE, MMMM d, y' }}
-    </p>
-
-    <app-message *ngFor="let message of messages" [user]="user" [message]="message" [action]="action" #appMessage></app-message>
+    <p class="chat-date">{{ joinDate | date:'EEEE, MMMM d, y' }}</p>
+    <app-message *ngFor="let message of messages"
+                 [user]="user"
+                 [message]="message"
+                 [action]="action" #appMessage>
+    </app-message>
   </div>
 </div>

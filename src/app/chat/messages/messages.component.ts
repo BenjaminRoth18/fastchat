@@ -1,13 +1,13 @@
-import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild} from '@angular/core';
+import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Message } from '../../shared/model/message';
 import { MatDialog } from '@angular/material';
-import { RegisterComponent } from './../register/register.component';
 import { MessageService } from '../../shared/message.service';
-import * as moment from 'moment';
 import { Action } from '../../shared/model/action';
 import { User } from '../../shared/model/user';
 import { UserService } from '../../shared/user.service';
+import { RegisterComponent } from '../register/register.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-messages',
@@ -34,10 +34,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       this.openDialog();
     }, 0);
 
-    this.ms.user.subscribe(user => {
-      this.user = user;
-    });
-
     this.ms.message.subscribe(message => {
       this.db.database.ref('messages').push(message);
     });
@@ -45,6 +41,10 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
     this.db.database.ref('messages').orderByChild('date')
       .startAt(this.joinDate).on('child_added', data => {
       this.messages.push(data.val());
+    });
+
+    this.ms.user.subscribe(user => {
+      this.user = user;
     });
 
     this.db.database.ref('user').on('value', data => {
