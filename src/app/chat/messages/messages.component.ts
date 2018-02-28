@@ -8,6 +8,8 @@ import { User } from '../../shared/model/user';
 import { UserService } from '../../shared/user.service';
 import { RegisterComponent } from '../register/register.component';
 import * as moment from 'moment';
+import {Store} from '@ngrx/store';
+import * as fromApp from '../../store/app.reducers';
 
 @Component({
   selector: 'app-messages',
@@ -27,7 +29,11 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
     this.db.object('user/' + this.user.id).remove();
   }
 
-  constructor(public db: AngularFireDatabase, public dialog: MatDialog, public ms: MessageService, public us: UserService) { }
+  constructor(public db: AngularFireDatabase,
+              public dialog: MatDialog,
+              public ms: MessageService,
+              public us: UserService,
+              private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
     setTimeout(() => {
@@ -43,8 +49,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       this.messages.push(data.val());
     });
 
-    this.ms.user.subscribe(user => {
-      this.user = user;
+    this.store.select('user').subscribe(data => {
+      this.user = data.user;
     });
 
     this.db.database.ref('user').on('value', data => {
@@ -77,7 +83,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
 
     dialogRef.afterClosed().subscribe(
       () => {
-
         this.db.database.ref('user/' + this.user.id).set({
           name: this.user.name
         });

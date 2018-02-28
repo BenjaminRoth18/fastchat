@@ -4,16 +4,22 @@ import { Message } from './model/message';
 import { Action } from './model/action';
 import { User } from './model/user';
 import * as moment from 'moment';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../store/app.reducers';
+import * as fromUser from '../chat/register/store/user.reducer';
 
 @Injectable()
 export class MessageService {
   message = new Subject<Message>();
-  user = new Subject<User>();
   userData: User;
 
-  constructor() {}
+  constructor(private store: Store<fromApp.AppState>) {
+    this.store.select('user').subscribe((userState: fromUser.UserState) => {
+      this.userData = userState.user;
+    });
+  }
 
-  getMessage(message) {
+  setMessage(message) {
     this.message.next({
       id: this.userData.id,
       avatar: this.userData.avatar,
@@ -22,10 +28,5 @@ export class MessageService {
       message: message,
       action: Action.CURRENT
     });
-  }
-
-  setUser(user: User) {
-    this.userData = user;
-    this.user.next(user);
   }
 }

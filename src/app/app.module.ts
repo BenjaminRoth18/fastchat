@@ -22,6 +22,8 @@ import { UserService } from './shared/user.service';
 import { MessageService } from './shared/message.service';
 import { MessageComponent } from './chat/messages/message/message.component';
 import { MessagesComponent } from './chat/messages/messages.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers } from './store/app.reducers';
 
 
 @NgModule({
@@ -46,7 +48,8 @@ import { MessagesComponent } from './chat/messages/messages.component';
     MatDialogModule,
     BrowserAnimationsModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot(reducers),
   ],
   providers: [UserService, MessageService],
   bootstrap: [AppComponent],

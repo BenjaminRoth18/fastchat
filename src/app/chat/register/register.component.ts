@@ -3,6 +3,9 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { MessageService } from '../../shared/message.service';
 import { User } from '../../shared/model/user';
+import { Store } from '@ngrx/store';
+import * as UserActions from './store/user.actions';
+import * as fromApp from '../../store/app.reducers';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +18,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RegisterComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private ms: MessageService) { }
+              private ms: MessageService,
+              private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
     this.signupForm = new FormControl('', [Validators.required]);
@@ -32,7 +36,10 @@ export class RegisterComponent implements OnInit {
 
   onSave() {
     if (this.usernameInput.nativeElement.value !== '') {
-      this.dialogRef.close(this.ms.setUser(new User(this.getRandomId(), this.usernameInput.nativeElement.value, this.getAvatar())));
+      this.store.dispatch(
+        new UserActions.SetUser(new User(this.getRandomId(), this.usernameInput.nativeElement.value, this.getAvatar()))
+      );
+      this.dialogRef.close();
     }
   }
 }

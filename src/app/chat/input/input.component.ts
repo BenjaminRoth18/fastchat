@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from '../../shared/message.service';
-import { Message } from '../../shared/model/message';
 
 @Component({
   selector: 'app-input',
@@ -10,12 +9,12 @@ import { Message } from '../../shared/model/message';
 export class InputComponent implements OnInit {
   messageContent: string;
 
-  constructor(private ms: MessageService) { }
+  constructor(private ms: MessageService) {}
 
   ngOnInit() {}
 
   sendMessage(message: string) {
     this.messageContent = null;
-    this.ms.getMessage(message);
+    this.ms.setMessage(message);
   }
 }
