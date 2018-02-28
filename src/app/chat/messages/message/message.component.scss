@@ -41,12 +41,14 @@
       }
 
       p {
+        line-height: 130%;
         margin: 0;
       }
     }
 
     .chat-message-inner {
       display: flex;
+      max-width: 600px;
     }
   }
 
