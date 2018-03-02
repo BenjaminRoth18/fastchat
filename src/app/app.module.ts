@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { MatCardModule, MatListModule, MatToolbarModule } from '@angular/material';
+import { MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
@@ -43,13 +43,11 @@ import { reducers } from './store/app.reducers';
     MatToolbarModule,
     MatIconModule,
     MatInputModule,
-    MatListModule,
-    MatCardModule,
     MatDialogModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(reducers),
+    StoreModule.forRoot(reducers)
   ],
   providers: [UserService, MessageService],
   bootstrap: [AppComponent],
