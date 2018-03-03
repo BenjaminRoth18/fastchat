@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit {
       this.userOnline = users;
     });
 
-    this.store.select('user').subscribe((userState: fromUser.UserState) => {
+    this.store.select('userData').subscribe((userState: fromUser.UserState) => {
       this.user = userState.user;
     });
   }

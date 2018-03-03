@@ -14,7 +14,7 @@ export class MessageService {
   userData: User;
 
   constructor(private store: Store<fromApp.AppState>) {
-    this.store.select('user').subscribe((userState: fromUser.UserState) => {
+    this.store.select('userData').subscribe((userState: fromUser.UserState) => {
       this.userData = userState.user;
     });
   }

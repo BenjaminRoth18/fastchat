@@ -49,7 +49,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       this.messages.push(data.val());
     });
 
-    this.store.select('user').subscribe(data => {
+    this.store.select('userData').subscribe(data => {
       this.user = data.user;
     });
 

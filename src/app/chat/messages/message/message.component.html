@@ -18,6 +18,9 @@
           <p>
             {{ message?.message }}
           </p>
+          <span class="time">
+            {{ message?.date | date: 'H:mm' }}
+          </span>
         </div>
       </div>
     </div>

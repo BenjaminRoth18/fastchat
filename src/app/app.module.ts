@@ -25,6 +25,8 @@ import { MessagesComponent } from './chat/messages/messages.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
 
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +49,8 @@ import { reducers } from './store/app.reducers';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(reducers)
+    StoreModule.forRoot(reducers),
+    !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
   providers: [UserService, MessageService],
   bootstrap: [AppComponent],
