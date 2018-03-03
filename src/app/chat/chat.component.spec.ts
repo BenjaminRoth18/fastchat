@@ -1,6 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatComponent } from './chat.component';
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-input',
+  template: '<p>Stub Input</p>'
+})
+export class InputStubComponent {}
+
+@Component({
+  selector: 'app-messages',
+  template: '<p>Stub Messages</p>'
+})
+export class MessagesStubComponent {}
 
 describe('ChatComponent', () => {
   let component: ChatComponent;
@@ -8,7 +21,11 @@ describe('ChatComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ChatComponent ]
+      declarations: [
+        ChatComponent,
+        InputStubComponent,
+        MessagesStubComponent
+      ]
     })
     .compileComponents();
   }));

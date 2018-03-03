@@ -1,15 +1,15 @@
 <div class="chat-messages">
-  <div class="chat-message" [ngClass]="{'chat-other': message.from !== user.name}">
-    <div *ngIf="message.action === action.JOINED" class="chat-joined">
+  <div class="chat-message" [ngClass]="{'chat-other': message?.from !== user?.name}">
+    <div *ngIf="message?.action === action?.JOINED" class="chat-joined">
       <p>
         {{ message?.message }}
       </p>
     </div>
 
-    <div *ngIf="message.action === action.CURRENT">
+    <div *ngIf="message?.action === action?.CURRENT">
       <div class="chat-message-inner">
         <div class="user-avatar">
-          <img src="{{ message.avatar }}" alt="{{ message?.from }}">
+          <img src="{{ message?.avatar }}" alt="{{ message?.from }}">
         </div>
         <div class="chat-content">
           <h5>
