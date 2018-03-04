@@ -7,6 +7,7 @@ import * as moment from 'moment';
 import { Store } from '@ngrx/store';
 import * as fromApp from '../store/app.reducers';
 import * as fromUser from '../chat/register/store/user.reducer';
+import * as fromMessage from '../chat/messages/store/messages.reducer';
 
 @Injectable()
 export class MessageService {
@@ -17,16 +18,16 @@ export class MessageService {
     this.store.select('userData').subscribe((userState: fromUser.UserState) => {
       this.userData = userState.user;
     });
-  }
 
-  setMessage(message) {
-    this.message.next({
-      id: this.userData.id,
-      avatar: this.userData.avatar,
-      date: moment().format(),
-      from: this.userData.name,
-      message: message,
-      action: Action.CURRENT
+    this.store.select('messageData').subscribe((messageState: fromMessage.MessageState) => {
+      this.message.next({
+        id: this.userData.id,
+        avatar: this.userData.avatar,
+        date: moment().format(),
+        from: this.userData.name,
+        message: messageState.message,
+        action: Action.CURRENT
+      });
     });
   }
 }

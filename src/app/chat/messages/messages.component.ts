@@ -7,8 +7,9 @@ import { Action } from '../../shared/model/action';
 import { User } from '../../shared/model/user';
 import { UserService } from '../../shared/user.service';
 import { RegisterComponent } from '../register/register.component';
+import * as MessagesActions from './store/messages.actions';
 import * as moment from 'moment';
-import {Store} from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as fromApp from '../../store/app.reducers';
 
 @Component({

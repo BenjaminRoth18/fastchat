@@ -1,6 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { MessageService } from '../../shared/message.service';
 import { User } from '../../shared/model/user';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,7 @@ import * as fromApp from '../../store/app.reducers';
 })
 export class RegisterComponent implements OnInit {
   @ViewChild('usernameInput') usernameInput: ElementRef;
-  signupForm: FormControl;
+  signupForm: FormGroup;
 
   constructor(public dialogRef: MatDialogRef<RegisterComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
@@ -22,7 +22,9 @@ export class RegisterComponent implements OnInit {
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {
-    this.signupForm = new FormControl('', [Validators.required]);
+    this.signupForm = new FormGroup({
+      'register': new FormControl()
+    });
   }
 
   getRandomId() {

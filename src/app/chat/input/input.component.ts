@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from '../../shared/message.service';
+import { Store } from '@ngrx/store';
+import * as fromApp from '../../store/app.reducers';
+import * as MessageActions from '../messages/store/messages.actions';
 
 @Component({
   selector: 'app-input',
@@ -9,12 +11,12 @@ import { MessageService } from '../../shared/message.service';
 export class InputComponent implements OnInit {
   messageContent: string;
 
-  constructor(private ms: MessageService) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {}
 
   sendMessage(message: string) {
     this.messageContent = null;
-    this.ms.setMessage(message);
+    this.store.dispatch(new MessageActions.SetMessage(message));
   }
 }

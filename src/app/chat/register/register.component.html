@@ -1,10 +1,11 @@
 <mat-dialog-content>
   <div class="register-content">
     <h1>Fastchat <img src="../../assets/images/logo.svg" alt=""></h1>
-
+    <form [formGroup]="signupForm">
     <mat-form-field>
-      <input matInput placeholder="Whats`your name?" (keyup.enter)="onSave()" [formControl]="signupForm" required #usernameInput>
+      <input matInput placeholder="Whats`your name?" (keyup.enter)="onSave()"  formControlName="register" required #usernameInput>
       <mat-error>This field is required</mat-error>
     </mat-form-field>
+    </form>
   </div>
 </mat-dialog-content>

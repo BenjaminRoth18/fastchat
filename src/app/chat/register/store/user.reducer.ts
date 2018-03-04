@@ -3,7 +3,7 @@ import { User } from '../../../shared/model/user';
 
 export interface UserState {
   user: User;
-};
+}
 
 const initialState: UserState = {
   user: new User(null, '', '')
