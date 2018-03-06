@@ -3,7 +3,7 @@
     <h1>Fastchat <img src="../../assets/images/logo.svg" alt=""></h1>
     <form [formGroup]="signupForm">
     <mat-form-field>
-      <input matInput placeholder="Whats`your name?" (keyup.enter)="onSave()"  formControlName="register" required #usernameInput>
+      <input matInput placeholder="Whats`your name?" (keyup.enter)="onSave()" autocomplete="off" formControlName="register" required #usernameInput>
       <mat-error>This field is required</mat-error>
     </mat-form-field>
     </form>

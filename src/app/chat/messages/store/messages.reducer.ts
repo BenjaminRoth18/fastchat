@@ -1,17 +1,26 @@
 import * as MessagesActions from './messages.actions';
+import { Message } from '../../../shared/model/message';
+import { Action } from '../../../shared/model/action';
 
 export interface MessageState {
-  message: string;
+  message: Message;
 }
 
 const initialState: MessageState = {
-  message: ''
-}
+  message:  {
+    id: 0,
+    avatar: '',
+    date: '',
+    from: '',
+    message: '',
+    action: Action.JOINED
+  }
+};
 
 export function messagesReducer(state = initialState, action: MessagesActions.MessagesActions) {
-  switch(action.type) {
+  switch (action.type) {
     case MessagesActions.SET_MESSAGE:
-      return { ...state, message: action.payload }
+      return { ...state, message: action.payload };
     default:
       return state;
   }

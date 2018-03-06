@@ -2,14 +2,14 @@ import { AfterViewChecked, Component, ElementRef, HostListener, OnInit, ViewChil
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Message } from '../../shared/model/message';
 import { MatDialog } from '@angular/material';
-import { MessageService } from '../../shared/message.service';
 import { Action } from '../../shared/model/action';
 import { User } from '../../shared/model/user';
 import { UserService } from '../../shared/user.service';
 import { RegisterComponent } from '../register/register.component';
-import * as MessagesActions from './store/messages.actions';
-import * as moment from 'moment';
 import { Store } from '@ngrx/store';
+import * as MessagesActions from './store/messages.actions';
+import * as UserActions from '../register/store/user.actions';
+import * as moment from 'moment';
 import * as fromApp from '../../store/app.reducers';
 
 @Component({
@@ -29,10 +29,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   beforeUnload() {
     this.db.object('user/' + this.user.id).remove();
   }
-
   constructor(public db: AngularFireDatabase,
               public dialog: MatDialog,
-              public ms: MessageService,
               public us: UserService,
               private store: Store<fromApp.AppState>) {}
 
@@ -41,17 +39,13 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       this.openDialog();
     }, 0);
 
-    this.ms.message.subscribe(message => {
-      this.db.database.ref('messages').push(message);
+    this.store.select('userData').subscribe(data => {
+      this.user = data.user;
     });
 
     this.db.database.ref('messages').orderByChild('date')
       .startAt(this.joinDate).on('child_added', data => {
       this.messages.push(data.val());
-    });
-
-    this.store.select('userData').subscribe(data => {
-      this.user = data.user;
     });
 
     this.db.database.ref('user').on('value', data => {
@@ -82,17 +76,18 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       disableClose: true
     });
 
-    dialogRef.afterClosed().subscribe(
-      () => {
-        this.db.database.ref('user/' + this.user.id).set({
-          name: this.user.name
-        });
+    dialogRef.afterClosed().subscribe(() => {
+      this.db.database.ref('user/' + this.user.id).set({
+        name: this.user.name
+      });
 
-        this.ms.message.next({
+      this.store.dispatch(new MessagesActions.JoinChat(
+        {
           date: this.joinDate,
           message: this.user.name + ' joined the party!',
           action: Action.JOINED
-        });
-      });
+        }
+      ));
+    });
   }
 }

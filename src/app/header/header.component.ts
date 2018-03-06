@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../shared/user.service';
 import { User } from '../shared/model/user';
 import { Store } from '@ngrx/store';
 import * as fromUser from '../chat/register/store/user.reducer';
 import * as fromApp from '../store/app.reducers';
+import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +14,7 @@ export class HeaderComponent implements OnInit {
   user: User;
   userOnline: number;
 
-  constructor(public us: UserService,
-              private store: Store<fromApp.AppState>) {}
+  constructor(private store: Store<fromApp.AppState>, public us: UserService,) {}
 
   ngOnInit() {
     this.us.userOnline.subscribe(users => {

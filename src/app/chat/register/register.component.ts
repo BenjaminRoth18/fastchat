@@ -1,7 +1,6 @@
 import { Component, ElementRef, Inject, OnInit, ViewChild } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MessageService } from '../../shared/message.service';
 import { User } from '../../shared/model/user';
 import { Store } from '@ngrx/store';
 import * as UserActions from './store/user.actions';
@@ -18,7 +17,6 @@ export class RegisterComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<RegisterComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
-              private ms: MessageService,
               private store: Store<fromApp.AppState>) { }
 
   ngOnInit() {

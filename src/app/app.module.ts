@@ -18,14 +18,14 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { RegisterComponent } from './chat/register/register.component';
-import { UserService } from './shared/user.service';
-import { MessageService } from './shared/message.service';
 import { MessageComponent } from './chat/messages/message/message.component';
 import { MessagesComponent } from './chat/messages/messages.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './store/app.reducers';
-
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+import { MessagesEffects } from './chat/messages/store/messages.effects';
+import { UserService } from './shared/user.service';
 
 
 @NgModule({
@@ -49,10 +49,11 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
+    EffectsModule.forRoot([MessagesEffects]),
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [UserService, MessageService],
+  providers: [UserService],
   bootstrap: [AppComponent],
   entryComponents: [RegisterComponent]
 })
