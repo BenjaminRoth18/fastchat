@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   user: User;
   userOnline: number;
 
-  constructor(private store: Store<fromApp.AppState>, public us: UserService,) {}
+  constructor(private store: Store<fromApp.AppState>, public us: UserService) {}
 
   ngOnInit() {
     this.us.userOnline.subscribe(users => {
