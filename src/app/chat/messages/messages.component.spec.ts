@@ -5,8 +5,6 @@ import { MessageComponent } from './message/message.component';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireModule } from 'angularfire2';
 import { MatDialogModule } from '@angular/material/dialog';
-import { MessageService } from '../../shared/message.service';
-import { UserService } from '../../shared/user.service';
 import { StoreModule } from '@ngrx/store';
 import { Subject } from 'rxjs/Subject';
 import { User} from '../../shared/model/user';
@@ -14,15 +12,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 
-export class MessageServiceStub {
-  message = new Subject<any>();
-}
-
-export class UserServiceStub {}
-
 const testState = {
   user: new User(null, '', '')
-}
+};
 
 export function testReducer(state = testState, action) {
   return state;
@@ -62,15 +54,6 @@ describe('MessagesComponent', () => {
         ReactiveFormsModule,
         BrowserAnimationsModule,
         StoreModule.forRoot({ user: testReducer })
-      ],
-      providers: [ {
-          provide: MessageService,
-          useClass: MessageServiceStub
-        },
-        {
-          provide: UserService,
-          useClass: UserServiceStub
-        }
       ]
     })
     .compileComponents();

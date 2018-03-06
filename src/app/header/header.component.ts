@@ -3,7 +3,6 @@ import { User } from '../shared/model/user';
 import { Store } from '@ngrx/store';
 import * as fromUser from '../chat/register/store/user.reducer';
 import * as fromApp from '../store/app.reducers';
-import { UserService } from '../shared/user.service';
 
 @Component({
   selector: 'app-header',
@@ -14,15 +13,20 @@ export class HeaderComponent implements OnInit {
   user: User;
   userOnline: number;
 
-  constructor(private store: Store<fromApp.AppState>, public us: UserService) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
-    this.us.userOnline.subscribe(users => {
-      this.userOnline = users;
+    this.store.select('userData').subscribe((userData: fromUser.UserState) => {
+      if (userData) {
+        this.userOnline = userData.userOnline;
+      }
     });
 
     this.store.select('userData').subscribe((userState: fromUser.UserState) => {
-      this.user = userState.user;
+      if (userState) {
+        this.user = userState.user;
+      }
     });
   }
 }
+

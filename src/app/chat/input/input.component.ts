@@ -5,6 +5,7 @@ import * as MessageActions from '../messages/store/messages.actions';
 import { Action } from '../../shared/model/action';
 import { User } from '../../shared/model/user';
 import * as moment from 'moment';
+import * as fromUser from '../../chat/register/store/user.reducer';
 
 @Component({
   selector: 'app-input',
@@ -16,8 +17,10 @@ export class InputComponent implements OnInit {
   user: User;
 
   constructor(private store: Store<fromApp.AppState>) {
-    this.store.select('userData').subscribe(data => {
-      this.user = data.user;
+    this.store.select('userData').subscribe((userData: fromUser.UserState) => {
+      if (userData) {
+        this.user = userData.user;
+      }
     });
   }
 

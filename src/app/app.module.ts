@@ -25,8 +25,6 @@ import { reducers } from './store/app.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { MessagesEffects } from './chat/messages/store/messages.effects';
-import { UserService } from './shared/user.service';
-
 
 @NgModule({
   declarations: [
@@ -53,7 +51,6 @@ import { UserService } from './shared/user.service';
     StoreModule.forRoot(reducers),
     !environment.production ? StoreDevtoolsModule.instrument() : []
   ],
-  providers: [UserService],
   bootstrap: [AppComponent],
   entryComponents: [RegisterComponent]
 })

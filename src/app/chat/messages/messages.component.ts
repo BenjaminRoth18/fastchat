@@ -4,13 +4,13 @@ import { Message } from '../../shared/model/message';
 import { MatDialog } from '@angular/material';
 import { Action } from '../../shared/model/action';
 import { User } from '../../shared/model/user';
-import { UserService } from '../../shared/user.service';
 import { RegisterComponent } from '../register/register.component';
 import { Store } from '@ngrx/store';
 import * as MessagesActions from './store/messages.actions';
 import * as UserActions from '../register/store/user.actions';
 import * as moment from 'moment';
 import * as fromApp from '../../store/app.reducers';
+import * as fromUser from '../../chat/register/store/user.reducer';
 
 @Component({
   selector: 'app-messages',
@@ -31,7 +31,6 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
   }
   constructor(public db: AngularFireDatabase,
               public dialog: MatDialog,
-              public us: UserService,
               private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
@@ -39,8 +38,8 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
       this.openDialog();
     }, 0);
 
-    this.store.select('userData').subscribe(data => {
-      this.user = data.user;
+    this.store.select('userData').subscribe((userData: fromUser.UserState) => {
+      this.user = userData.user;
     });
 
     this.db.database.ref('messages').orderByChild('date')
@@ -51,7 +50,7 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
     this.db.database.ref('user').on('value', data => {
       if (data.val()) {
         this.userOnline = Object.values(data.val()).length;
-        this.us.userOnline.next(this.userOnline);
+        this.store.dispatch(new UserActions.SetOnlineUser(this.userOnline));
       }
     });
   }

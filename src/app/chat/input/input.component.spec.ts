@@ -4,10 +4,18 @@ import { InputComponent } from './input.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
-import { MessageService } from '../../shared/message.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { StoreModule } from '@ngrx/store';
+import { User } from '../../shared/model/user';
 
-export class MessageServiceStub {}
+const testState = {
+  user: new User(null, '', ''),
+  userOnline: 1
+};
+
+export function testReducer(state = testState, action) {
+  return state;
+}
 
 describe('InputComponent', () => {
   let component: InputComponent;
@@ -22,9 +30,9 @@ describe('InputComponent', () => {
         MatIconModule,
         MatInputModule,
         FormsModule,
-        BrowserAnimationsModule
-      ],
-      providers: [ {provide: MessageService, useClass: MessageServiceStub} ]
+        BrowserAnimationsModule,
+        StoreModule.forRoot({ user: testReducer })
+      ]
     })
     .compileComponents();
   }));
