@@ -82,7 +82,10 @@ export class MessagesComponent implements OnInit, AfterViewChecked {
 
       this.store.dispatch(new MessagesActions.JoinChat(
         {
+          id: this.user.id,
+          avatar: this.user.avatar,
           date: this.joinDate,
+          from: this.user.name,
           message: this.user.name + ' joined the party!',
           action: Action.JOINED
         }

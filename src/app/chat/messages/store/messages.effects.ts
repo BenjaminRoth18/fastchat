@@ -24,6 +24,14 @@ export class MessagesEffects {
     .map((action: MessagesActions.SendMessage) => action.payload)
     .withLatestFrom(this.store.select('userData'))
     .switchMap(([text, state]) => {
+      this.store.dispatch(new MessagesActions.SetMessage({
+        id: state.user.id,
+            avatar: state.user.avatar,
+            date: moment().format(),
+            from: state.user.name,
+            message: text,
+            action: Action.CURRENT
+      }));
       return fromPromise(
         this.db.database.ref('messages').push(
           {

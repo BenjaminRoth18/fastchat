@@ -21,6 +21,8 @@ export function messagesReducer(state = initialState, action: MessagesActions.Me
   switch (action.type) {
     case MessagesActions.SET_MESSAGE:
       return { ...state, message: action.payload };
+    case MessagesActions.JOIN_CHAT:
+      return { ...state, message: action.payload };
     default:
       return state;
   }
