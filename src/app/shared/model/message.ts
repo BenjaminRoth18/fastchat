@@ -6,5 +6,7 @@ export interface Message {
   date?: string;
   from?: string;
   message?: string;
+  image?: string;
+  upload?: number;
   action?: Action;
 }

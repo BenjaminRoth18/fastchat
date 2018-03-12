@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './header/header.component';
@@ -25,6 +26,7 @@ import { reducers } from './store/app.reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
 import { MessagesEffects } from './chat/messages/store/messages.effects';
+import { MatListModule } from '@angular/material/list';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,8 @@ import { MessagesEffects } from './chat/messages/store/messages.effects';
     MatIconModule,
     MatInputModule,
     MatDialogModule,
+    MatButtonModule,
+    MatListModule,
     BrowserAnimationsModule,
     FormsModule,
     ReactiveFormsModule,

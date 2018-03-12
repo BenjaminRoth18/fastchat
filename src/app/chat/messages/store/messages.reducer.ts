@@ -13,6 +13,8 @@ const initialState: MessageState = {
     date: '',
     from: '',
     message: '',
+    image: '',
+    upload: 0,
     action: Action.JOINED
   }
 };
@@ -23,6 +25,8 @@ export function messagesReducer(state = initialState, action: MessagesActions.Me
       return { ...state, message: action.payload };
     case MessagesActions.JOIN_CHAT:
       return { ...state, message: action.payload };
+      case MessagesActions.SHOW_UPLOAD_IMAGE_PROCESS:
+      return { ...state, message: { upload: action.payload }};
     default:
       return state;
   }

@@ -1,7 +1,12 @@
 <div class="chat-input">
   <mat-icon>message</mat-icon>
   <mat-form-field>
-    <input matInput [(ngModel)]="messageContent" maxlength="140" (keyup.enter)="sendMessage(messageContent)" #message>
+    <input matInput [(ngModel)]="messageContent" maxlength="140" autocomplete="off" (keyup.enter)="sendMessage(messageContent)" #message>
+    <div class="chat-upload-image">
+        <input type="file" class="chat-image" (change)="uploadImage($event)">
+        <mat-icon>image</mat-icon>
+        <label>Upload Image</label>
+    </div>
     <mat-hint align="end">{{message.value.length}}/140</mat-hint>
   </mat-form-field>
 </div>

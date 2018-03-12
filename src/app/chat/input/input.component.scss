@@ -1,18 +1,65 @@
+@import '../../../styles/colors';
+@import '../../../styles/viewports';
+
 :host {
-  border-top: solid 1px #eaeaea;
+  border-top: solid 1px $col_grey-3;
   bottom: 0;
   box-sizing: border-box;
   padding: 40px 20px;
   position: fixed;
   width: 100%;
 
-  div.chat-input {
+  .chat-input {
     display: flex;
+    padding-right: 0;
     justify-content: center;
 
     mat-form-field {
       max-width: 600px;
       width: 100%;
+
+      .chat-upload-image {
+        color: $col_grey-1;
+        position: absolute;
+        right: 0;
+        top: 0;
+        transition: color 0.3s ease;
+
+        input {
+          opacity: 0;
+          overflow: hidden;
+          position: absolute;
+          width: 100%;
+        }
+
+        mat-icon {
+          vertical-align: text-top;
+        }
+
+        label {
+          vertical-align: middle;
+        }
+
+        &:hover {
+          color: $col_grey-2;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $break-width-1) {
+  :host {
+    padding: 20px;
+
+    .chat-input {
+      mat-form-field {
+        .chat-upload-image {
+          label {
+            display: none;
+          }
+        }
+      }
     }
   }
 }

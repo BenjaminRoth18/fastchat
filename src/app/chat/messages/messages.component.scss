@@ -1,13 +1,28 @@
 @import '../../../styles/_colors.scss';
+@import '../../../styles/viewports';
 
-.messages-list {
+.uploadProgress {
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  span {
+    background: $col_purple-2;
+    display: block;
+    height: 3px;
+  }
+}
+
+mat-list {
   bottom: 146px;
   left: 0;
-  overflow: auto;
+  overflow-y: scroll;
   padding-top: 50px;
   position: fixed;
   right: 0;
   top: 53px;
+  -webkit-overflow-scrolling: touch;
 
   p.chat-date {
     color: $col_grey-1;
@@ -15,9 +30,15 @@
     text-align: center;
   }
 
-  .messages-list-inner {
+  mat-list-item {
+    height: auto;
     margin: 0 auto;
     max-width: 800px;
-    padding: 0 5%;
+  }
+}
+
+@media screen and (max-width: $break-width-1) {
+  mat-list {
+    bottom: 106px;
   }
 }

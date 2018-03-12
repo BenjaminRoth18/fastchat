@@ -37,7 +37,7 @@ describe('MessagesComponent', () => {
       projectId: 'chat-96b27',
       storageBucket: 'chat-96b27.appspot.com',
       messagingSenderId: '542749835675'
-  }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({

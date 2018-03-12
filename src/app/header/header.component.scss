@@ -1,44 +1,49 @@
 @import '../../styles/_colors.scss';
 
-mat-toolbar {
-  background: $col_white;
-  box-shadow: 0 2px 1px 0 rgba(0,0,0,0.1);
-  height: auto;
-  justify-content: space-between;
-  margin-bottom: 40px;
+:host {
+  position: fixed;
+  width: 100%;
 
-  .link-logo {
-    color: $col_black;
-    text-decoration: none;
-  }
-
-  .app-toolbar {
-    display: flex;
-  }
-
-  .user-online {
-    font-size: 16px;
-    padding: 10px 0;
-
-    span {
-      background: $col_grey-2;
-      border-radius: 100%;
-      display: inline-block;
-      margin-right: 3px;
-      text-align: center;
-      width: 30px;
+  mat-toolbar {
+    background: $col_white;
+    box-shadow: 0 2px 1px 0 rgba(0,0,0,0.1);
+    height: auto;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  
+    .link-logo {
+      color: $col_black;
+      text-decoration: none;
     }
-  }
-
-  .user-current {
-    border-left: solid 1px $col_grey-2;
-    margin-left: 20px;
-    padding: 10px 0 0 20px;
-
-    img {
-      border-radius: 100%;
-      display: block;
-      max-width: 30px;
+  
+    .app-toolbar {
+      display: flex;
+    }
+  
+    .user-online {
+      font-size: 16px;
+      padding: 10px 0;
+  
+      span {
+        background: $col_grey-3;
+        border-radius: 100%;
+        display: inline-block;
+        margin-right: 3px;
+        text-align: center;
+        width: 30px;
+      }
+    }
+  
+    .user-current {
+      border-left: solid 1px $col_grey-3;
+      margin-left: 20px;
+      padding: 10px 0 0 20px;
+  
+      img {
+        border-radius: 100%;
+        display: block;
+        max-width: 30px;
+      }
     }
   }
 }

@@ -1,10 +1,10 @@
-<div class="messages-list" #messageList>
-  <div class="messages-list-inner">
-    <p class="chat-date" *ngIf="joinDate">{{ joinDate | date:'EEEE, MMMM d, y' }}</p>
-    <app-message *ngFor="let message of (messages ? messages : [])"
-                 [user]="user"
-                 [message]="message"
-                 [action]="action" #appMessage>
-    </app-message>
-  </div>
+<div class="uploadProgress">
+  <span [ngStyle]="{ 'width': uploadProgress + '%' }"></span>
 </div>
+
+<mat-list class="chat-list">
+  <p class="chat-date" *ngIf="joinDate">{{ joinDate | date:'EEEE, MMMM d, y' }}</p>
+  <mat-list-item *ngFor="let message of (messages ? messages : [])">
+    <app-message [user]="user" [message]="message" [action]="action" #appMessage></app-message>
+  </mat-list-item>
+</mat-list>

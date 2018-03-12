@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
 import { User } from '../../shared/model/user';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireModule } from 'angularfire2';
 
 const testState = {
   user: new User(null, '', ''),
@@ -21,6 +23,15 @@ describe('InputComponent', () => {
   let component: InputComponent;
   let fixture: ComponentFixture<InputComponent>;
 
+  const firebaseStub = {
+      apiKey: 'AIzaSyCmVoguhExDRdUTq69VdMArvCkWudldYkw',
+      authDomain: 'chat-96b27.firebaseapp.com',
+      databaseURL: 'https://chat-96b27.firebaseio.com',
+      projectId: 'chat-96b27',
+      storageBucket: 'chat-96b27.appspot.com',
+      messagingSenderId: '542749835675'
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -31,6 +42,8 @@ describe('InputComponent', () => {
         MatInputModule,
         FormsModule,
         BrowserAnimationsModule,
+        AngularFireDatabaseModule,
+        AngularFireModule.initializeApp(firebaseStub),
         StoreModule.forRoot({ user: testReducer })
       ]
     })

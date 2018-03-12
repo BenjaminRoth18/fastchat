@@ -1,5 +1,5 @@
 <div class="chat-messages">
-  <div class="chat-message" [ngClass]="{'chat-other': message?.from !== user?.name}">
+  <div class="chat-message" [ngClass]="{'chat-other': message?.from !== user?.name, 'chat-image-message': message?.image }">
     <div *ngIf="message?.action === action?.JOINED" class="chat-joined">
       <p>
         {{ message?.message }}
@@ -18,6 +18,9 @@
           <p>
             {{ message?.message }}
           </p>
+          <div class="chat-image" *ngIf="message.image">
+              <img src="{{ message?.image }}" alt="">
+          </div>
           <span class="time">
             {{ message?.date | date: 'H:mm' }}
           </span>
